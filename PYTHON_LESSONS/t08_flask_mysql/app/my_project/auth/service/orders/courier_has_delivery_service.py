@@ -13,3 +13,6 @@ class CourierHasDeliveryService(GeneralService):
     Realisation of Client service.
     """
     _dao = courier_has_delivery_dao
+
+    def find_deliveries_by_courier(self, delivery_id: int):
+        return self._dao.find_deliveries_by_courier(delivery_id)

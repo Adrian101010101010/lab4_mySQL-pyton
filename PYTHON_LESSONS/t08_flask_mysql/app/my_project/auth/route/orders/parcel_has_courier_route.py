@@ -12,6 +12,13 @@ from t08_flask_mysql.app.my_project.auth.controller import parcel_has_courier_co
 from t08_flask_mysql.app.my_project.auth.domain import ParcelHasCourier
 
 parcel_has_courier_bp = Blueprint('parcel_has_courier', __name__, url_prefix='/parcel_has_courier')
+@parcel_has_courier_bp.get('')
+def get_all() -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(parcel_has_courier_controller.find_all()), HTTPStatus.OK)
 
 @parcel_has_courier_bp.post('')
 def create_parcel_has_courier() -> Response:
@@ -30,6 +37,7 @@ def get_parcels_by_courier(courier_id: int) -> Response:
     Gets all parcels associated with a specific courier.
     :return: Response object
     """
+
     return make_response(jsonify(parcel_has_courier_controller.find_parcels_by_courier(courier_id)), HTTPStatus.OK)
 
 @parcel_has_courier_bp.get('/parcel/<int:parcel_id>')

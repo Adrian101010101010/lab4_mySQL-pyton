@@ -22,3 +22,26 @@ class ParcelHasCourier(db.Model):
 
     def __repr__(self) -> str:
         return f"ParcelHasCourier({self.courier_id}, {self.parcel_id})"
+    def put_into_dto(self) -> Dict[str, Any]:
+            """
+            Puts domain object into DTO without a relationship
+            :return: DTO object as a dictionary
+            """
+            return {
+                "courier_id": self.courier_id,
+                "parcel_id": self.parcel_id,
+            }
+
+    @staticmethod
+    def create_from_dto(dto_dict: Dict[str, Any]) -> ParcelHasCourier:
+        """
+        Creates a domain object from DTO
+        :param dto_dict: DTO object
+        :return: Domain object
+        """
+        obj = ParcelHasCourier(
+            courier_id=dto_dict.get("courier_id"),
+            parcel_id=dto_dict.get("parcel_id"),
+            status=dto_dict.get("status"),
+        )
+        return obj

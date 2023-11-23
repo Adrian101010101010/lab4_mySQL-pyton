@@ -4,7 +4,7 @@ apavelchak@gmail.com
 © Andrii Pavelchak
 """
 
-from t08_flask_mysql.app.my_project.auth.service import client_service
+from t08_flask_mysql.app.my_project.auth.service import department_service
 from t08_flask_mysql.app.my_project.auth.controller.general_controller import GeneralController
 
 
@@ -12,4 +12,4 @@ class DepartmentController(GeneralController):
     """
     Realisation of Client controller.
     """
-    _service = client_service
+    _service = department_service

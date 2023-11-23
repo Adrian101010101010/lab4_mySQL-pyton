@@ -16,6 +16,15 @@ class ParcelHasCourierDAO(GeneralDAO):
     """
     _domain_type = ParcelHasCourier
 
+    def find_parcels_by_courier(self, courier_id: int) :
+        """
+                    Finds libraries associated with a specific user by user_id.
+                    :param user_id: ID of the user
+                    :return: List of libraries associated with the user
+                    """
+        return self._session.query(ParcelHasCourier).filter(ParcelHasCourier.courier_id == courier_id).all()
+
+
     def find_by_courier_id(self, courier_id: int) -> List[object]:
         """
         Gets ParcelHasCourier objects from the database table by field 'courier_id'.

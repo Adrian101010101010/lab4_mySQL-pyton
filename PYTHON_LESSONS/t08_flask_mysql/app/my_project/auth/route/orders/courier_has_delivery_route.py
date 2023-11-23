@@ -13,6 +13,14 @@ from t08_flask_mysql.app.my_project.auth.domain import CourierHasDelivery
 
 courier_has_delivery_bp = Blueprint('courier_has_delivery', __name__, url_prefix='/courier_has_delivery')
 
+@courier_has_delivery_bp.get('')
+def get_all() -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(courier_has_delivery_controller.find_all()), HTTPStatus.OK)
+
 @courier_has_delivery_bp.post('')
 def create_courier_has_delivery() -> Response:
     """
